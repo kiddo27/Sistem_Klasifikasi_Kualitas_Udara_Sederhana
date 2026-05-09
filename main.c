@@ -2,16 +2,16 @@ typedef enum Kualitas {
     Baik,
     Sedang,
     Tidak_Sehat;
-} kualitas_udara;
+} kualitas_t;
 
 typedef struct Udara {
 
     float pm10;
     float pm2_5;
     float sulfur_dioksida;
-    kualitas_udara kualitas;
+    kualitas_t kualitas;
 
-} udara;
+} udara_t;
 
 
 int main()

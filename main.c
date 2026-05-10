@@ -9,17 +9,16 @@ typedef enum Kualitas {
 } kualitas_t;
 
 typedef struct Udara {
-
     int isHujan;
     int angin_kencang;
     float pm2_5;
     kualitas_t kualitas;
-
 } udara_t;
 
-//Ubah enum kualitas jadi string
-const char* namaKualitas(kualitas_t k){
-    switch(k){
+// enum kualitas -> string
+const char* namaKualitas(kualitas_t k)
+{
+    switch (k) {
         case Baik: return "Baik";
         case Sedang: return "Sedang";
         case Tidak_Sehat: return "Tidak Sehat";
@@ -27,7 +26,8 @@ const char* namaKualitas(kualitas_t k){
     }
 }
 
-udara_t inputUdara(){
+udara_t inputUdara()
+{
     udara_t udara;
     printf("Apakah Hari ini Hujan?? (1/0): \n");
     scanf("%d", &udara.isHujan);
@@ -38,23 +38,24 @@ udara_t inputUdara(){
     return udara;
 }
 
-udara_t klasifikasiUdara(udara_t dataUdara[], int n){
+udara_t klasifikasiUdara(udara_t dataUdara[], int n)
+{
     
-    for(int i=0; i<n; i++){
-        if(dataUdara[i].isHujan == 1 || dataUdara[i].angin_kencang == 1){
+    for(int i = 0; i < n; i++) {
+        if(dataUdara[i].isHujan == 1 || dataUdara[i].angin_kencang == 1) {
             dataUdara[i].kualitas = Baik;
-            printf("Kualitas Udara Hari ke-%d : %s\n", i+1, namaKualitas(dataUdara[i].kualitas));
-        }else{
-            if(dataUdara[i].pm2_5 >0 && dataUdara[i].pm2_5 <=50){
+            printf("Kualitas Udara Hari ke-%d : %s\n", i + 1, namaKualitas(dataUdara[i].kualitas));
+        } else {
+            if (dataUdara[i].pm2_5 > 0 && dataUdara[i].pm2_5 <= 50) {
                 dataUdara[i].kualitas = Baik;
-                printf("Kualitas Udara Hari ke-%d : %s\n", i+1, namaKualitas(dataUdara[i].kualitas));
-            }else if(dataUdara[i].pm2_5 > 50 && dataUdara[i].pm2_5 <=100){
+                printf("Kualitas Udara Hari ke-%d : %s\n", i + 1, namaKualitas(dataUdara[i].kualitas));
+            } else if (dataUdara[i].pm2_5 > 50 && dataUdara[i].pm2_5 <= 100) {
                 dataUdara[i].kualitas = Sedang;
-                printf("Kualitas Udara Hari ke-%d : %s\n", i+1, namaKualitas(dataUdara[i].kualitas));
-            }else if(dataUdara[i].pm2_5 > 100){
+                printf("Kualitas Udara Hari ke-%d : %s\n", i + 1, namaKualitas(dataUdara[i].kualitas));
+            } else if (dataUdara[i].pm2_5 > 100) {
                 dataUdara[i].kualitas = Tidak_Sehat;
-                printf("Kualitas Udara Hari ke-%d : %s\n", i+1, namaKualitas(dataUdara[i].kualitas));
-            }else{
+                printf("Kualitas Udara Hari ke-%d : %s\n", i + 1, namaKualitas(dataUdara[i].kualitas));
+            } else {
                 printf("PM 2.5 Tidak Valid!!! Harus > 0");
             }
         }
@@ -72,7 +73,7 @@ int main()
     udara_t *dataUdara;
     dataUdara = (udara_t*)calloc(jumlahData,sizeof(udara_t));
 
-    for(int i=0;i<jumlahData;i++){
+    for(int i = 0; i < jumlahData; i++){
         printf("\nMasukkan data udara hari ke-%d\n", i+1);
         dataUdara[i] = inputUdara();
     }

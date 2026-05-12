@@ -62,23 +62,40 @@ udara_t klasifikasiUdara(udara_t dataUdara[], int n)
     }
 }
 
+void MenuAwalInformasi(){
+    printf("=============== SISTEM KUALIFIKASI KUALTIAS UDARA ===============\n");
+    printf("Informasi Program:\nProgram ini menyiapkan 2 fitur berupa pengecekan kualitas udara di \nsuatu daerah dan hitungan mundur sebelum kiamat iklim terjadi.\n");
+    printf("=================================================================\n");
+    printf("Pilih Menu:\n1. Pengecekan Kualitas Udara\n2. Perhitungan kiamat iklim\nPilihan: ");
+}
 int main()
 {
-    printf("=== SISTEM KUALIFIKASI KUALTIAS UDARA ===\n");
-    
-    int jumlahData;
-    printf("\nMasukkan Jumlah Data Harian Udara: ");
-    scanf("%d", &jumlahData);
+    int jumlahData, pilihan;
 
-    udara_t *dataUdara;
-    dataUdara = (udara_t*)calloc(jumlahData,sizeof(udara_t));
+    MenuAwalInformasi();
+    scanf("%d", &pilihan);
 
-    for(int i = 0; i < jumlahData; i++){
-        printf("\nMasukkan data udara hari ke-%d\n", i+1);
-        dataUdara[i] = inputUdara();
-    }
+    switch(pilihan){
+        case 1:     
+            printf("\nMasukkan Jumlah Data Harian Udara: ");
+            scanf("%d", &jumlahData);
 
-    printf("\n=== Report Kualitas Udara ===\n");
-    klasifikasiUdara(dataUdara,jumlahData);
+            udara_t *dataUdara;
+            dataUdara = (udara_t*)calloc(jumlahData,sizeof(udara_t));
+
+            for(int i = 0; i < jumlahData; i++){
+                printf("\nMasukkan data udara hari ke-%d\n", i+1);
+                dataUdara[i] = inputUdara();
+            }
+
+            printf("\n=== Report Kualitas Udara ===\n");
+            klasifikasiUdara(dataUdara,jumlahData); 
+            break;
+
+        case 2:
+
+        break;
+            }
+
     return 0;
 }

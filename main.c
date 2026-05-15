@@ -64,21 +64,48 @@ udara_t klasifikasiUdara(udara_t dataUdara[], int n)
 
 int main()
 {
-    printf("=== SISTEM KUALIFIKASI KUALTIAS UDARA ===\n");
-    
+    int inp;
     int jumlahData;
-    printf("\nMasukkan Jumlah Data Harian Udara: ");
-    scanf("%d", &jumlahData);
-
     udara_t *dataUdara;
-    dataUdara = (udara_t*)calloc(jumlahData,sizeof(udara_t));
 
-    for(int i = 0; i < jumlahData; i++){
-        printf("\nMasukkan data udara hari ke-%d\n", i+1);
-        dataUdara[i] = inputUdara();
+    while (1) {
+        printf("=== SISTEM KUALIFIKASI KUALITAS UDARA ===\n");
+        printf("1. Klasifikasi udara\n2. Prediksi Collapse\n3. Keluar\n");
+        printf("Pilihan: ");
+        scanf("%d", &inp);
+
+
+        switch (inp) {
+            case 1:
+                printf("\nMasukkan Jumlah Data Harian Udara: ");
+                scanf("%d", &jumlahData);
+
+                // dynamic allocation
+                dataUdara = (udara_t*)calloc(jumlahData,sizeof(udara_t));
+                if (dataUdara == NULL) return 1;
+
+                for(int i = 0; i < jumlahData; i++){
+                    printf("\nMasukkan data udara hari ke-%d\n", i+1);
+                    dataUdara[i] = inputUdara();
+                }
+
+                printf("\n=== Report Kualitas Udara ===\n");
+                klasifikasiUdara(dataUdara,jumlahData);
+
+                free(dataUdara);
+                break;
+            case 2:
+                //
+                // TODO : Environmental collapse prediction
+                return 0;
+            case 3:
+                //Exit
+                return 0;
+            default:
+                puts("Pilihan tidak valid!");
+                break;
+        }
     }
-
-    printf("\n=== Report Kualitas Udara ===\n");
-    klasifikasiUdara(dataUdara,jumlahData);
+    
     return 0;
 }
